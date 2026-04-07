@@ -9,30 +9,32 @@
 body {
   font-family: "微軟正黑體";
   text-align: center;
-  background: #f5f6fa;
+}
+
+h2 {
+  margin-top: 40px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
 }
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
   padding: 20px;
 }
 
 .card {
-  background: white;
-  border-radius: 12px;
-  padding: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: #fff;
+  padding: 8px;
 }
 
-.card:hover {
-  transform: scale(1.05);
-}
-
-img {
+.card img {
   width: 100%;
-  border-radius: 8px;
+}
+
+.card p {
+  font-size: 14px;
 }
 </style>
 
@@ -42,26 +44,110 @@ img {
 
 <h1>生活輔導宣導單張</h1>
 
-<div class="gallery">
+<div id="content"></div>
 
-  <!-- 注意：這裡沒有 images/ -->
+<script>
 
-  <div class="card">
-    <img src="./交通安全指引.png">
-    <p>交通安全指引</p>
-  </div>
+// 📦 分類（已幫你整理）
+const data = {
 
-  <div class="card">
-    <img src="./反詐騙.png">
-    <p>反詐騙</p>
-  </div>
+"🚸 交通與安全": [
+"交通安全指引.png",
+"校內交通安全.png",
+"校園交通安全.png",
+"校園交通安全宣導.png",
+"校園車輛減速慢行.png",
+"微型電動車指南.png",
+"清明連假交通安全.png",
+"機車四寶.png",
+"高三機車新手上路.jpg"
+],
 
-  <div class="card">
-    <img src="./兩性平等.png">
-    <p>兩性平等</p>
-  </div>
+"⚖️ 法治 / 反詐騙 / 霸凌": [
+"反詐騙.png",
+"全民普發防詐.png",
+"網路詐騙.png",
+"網路霸凌.png",
+"霸凌分界.jpg",
+"辨識預防詐騙電子郵件.png",
+"打工小心反變詐騙-日.png",
+"打工小心反變詐騙-中.png"
+],
 
-</div>
+"🧠 性平 / 人際": [
+"兩性平等.png",
+"校園性騷擾定義.png",
+"校園性騷擾關鍵要素與類型.png",
+"避免性騷擾他人之心法.png",
+"讓言語充滿善意.png",
+"讓言語充滿善意1.png",
+"讓言語充滿善意 (2).png",
+"好好說話.png"
+],
+
+"🩺 健康 / 生活": [
+"一氧化碳.jpg",
+"環境維護.png",
+"寒假愛校時間.jpg",
+"尊重自主隱私.png",
+"尊重隱私.png",
+"彩虹茶.png"
+],
+
+"🚨 防災 / 校園安全": [
+"地震避難.png",
+"地震避難三步驟.png",
+"地震避難三步驟 (2).png",
+"地下室停車場.png",
+"校園安全.png",
+"校園安全防護六原則.png",
+"校園安全防護六步驟.png",
+"校園安全防護守則.png"
+],
+
+"🚫 毒品防制": [
+"拒絕毒品.png",
+"新興毒品偽裝.png",
+"查獲違禁品.png",
+"禁止攜帶違禁品-直式.png",
+"禁止攜帶違禁品-橫式.png",
+"酷瑪介紹新興毒品-直.png",
+"酷瑪介紹新興毒品-橫.png"
+]
+
+};
+
+// 🔄 自動生成
+const container = document.getElementById("content");
+
+for (let category in data) {
+
+  let title = document.createElement("h2");
+  title.innerText = category;
+
+  let gallery = document.createElement("div");
+  gallery.className = "gallery";
+
+  data[category].forEach(file => {
+
+    let card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <a href="./${file}" target="_blank">
+        <img src="./${file}">
+      </a>
+      <p>${file}</p>
+    `;
+
+    gallery.appendChild(card);
+  });
+
+  container.appendChild(title);
+  container.appendChild(gallery);
+}
+
+</script>
 
 </body>
 </html>
