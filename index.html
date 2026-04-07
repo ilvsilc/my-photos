@@ -7,21 +7,49 @@
 
 <style>
 body {
-  font-family: "微軟正黑體";
-  text-align: center;
+  margin: 0;
+  font-family: "微軟正黑體", Arial;
+  background: #f5f6fa;
 }
 
-h2 {
-  margin-top: 40px;
-  border-bottom: 2px solid #ccc;
-  padding-bottom: 5px;
+/* 🔴 上方標題 */
+.header {
+  background: #d83434;
+  color: white;
+  padding: 12px 20px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-/* 跑馬燈 */
+/* 容器 */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* 分類標題 */
+.section-title {
+  font-size: 22px;
+  margin: 40px 0 10px;
+  border-left: 6px solid #d83434;
+  padding-left: 10px;
+}
+
+/* 卡片 */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* 圖片輪播 */
 .carousel {
   position: relative;
-  max-width: 500px;
-  margin: 20px auto;
+  max-width: 600px;
+  margin: auto;
 }
 
 .carousel img {
@@ -34,117 +62,109 @@ h2 {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
   color: white;
   border: none;
-  padding: 10px;
+  padding: 10px 14px;
   cursor: pointer;
+  border-radius: 6px;
 }
 
-.prev { left: 0; }
-.next { right: 0; }
+.prev { left: 10px; }
+.next { right: 10px; }
 
+.prev:hover, .next:hover {
+  background: rgba(0,0,0,0.85);
+}
+
+/* 檔名 */
+.filename {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* 📱 手機 */
+@media (max-width: 600px) {
+  .section-title {
+    font-size: 18px;
+  }
+}
 </style>
 
 </head>
 
 <body>
 
-<h1>生活輔導宣導單張</h1>
+<div class="header">
+  生活輔導宣導單張
+</div>
 
-<div id="content"></div>
+<div class="container" id="content"></div>
 
 <script>
 
-// 📦 原本資料 그대로使用
+// 📦 分類（已依你所有檔案整理）
 const data = {
 
 "🚸 交通與安全": [
-"交通安全指引.png",
-"校內交通安全.png",
-"校園交通安全.png",
-"校園交通安全宣導.png",
-"校園車輛減速慢行.png",
-"微型電動車指南.png",
-"清明連假交通安全.png",
-"機車四寶.png",
-"高三機車新手上路.jpg"
+"交通安全指引.png","校內交通安全.png","校園交通安全.png","校園交通安全宣導.png",
+"校園車輛減速慢行.png","微型電動車指南.png","清明連假交通安全.png","機車四寶.png","高三機車新手上路.jpg"
 ],
 
 "⚖️ 法治 / 反詐騙 / 霸凌": [
-"反詐騙.png",
-"全民普發防詐.png",
-"網路詐騙.png",
-"網路霸凌.png",
-"霸凌分界.jpg",
-"辨識預防詐騙電子郵件.png",
-"打工小心反變詐騙-日.png",
-"打工小心反變詐騙-中.png"
+"反詐騙.png","全民普發防詐.png","網路詐騙.png","網路霸凌.png","霸凌分界.jpg",
+"辨識預防詐騙電子郵件.png","打工小心反變詐騙-日.png","打工小心反變詐騙-中.png"
 ],
 
 "🧠 性平 / 人際": [
-"兩性平等.png",
-"校園性騷擾定義.png",
-"校園性騷擾關鍵要素與類型.png",
-"避免性騷擾他人之心法.png",
-"讓言語充滿善意.png",
-"讓言語充滿善意1.png",
-"讓言語充滿善意 (2).png",
-"好好說話.png"
+"兩性平等.png","校園性騷擾定義.png","校園性騷擾關鍵要素與類型.png",
+"避免性騷擾他人之心法.png","讓言語充滿善意.png","讓言語充滿善意1.png",
+"讓言語充滿善意 (2).png","好好說話.png"
 ],
 
 "🩺 健康 / 生活": [
-"一氧化碳.jpg",
-"環境維護.png",
-"寒假愛校時間.jpg",
-"尊重自主隱私.png",
-"尊重隱私.png",
-"彩虹茶.png"
+"一氧化碳.jpg","環境維護.png","寒假愛校時間.jpg","尊重自主隱私.png","尊重隱私.png","彩虹茶.png"
 ],
 
 "🚨 防災 / 校園安全": [
-"地震避難.png",
-"地震避難三步驟.png",
-"地震避難三步驟 (2).png",
-"地下室停車場.png",
-"校園安全.png",
-"校園安全防護六原則.png",
-"校園安全防護六步驟.png",
-"校園安全防護守則.png"
+"地震避難.png","地震避難三步驟.png","地震避難三步驟 (2).png","地下室停車場.png",
+"校園安全.png","校園安全防護六原則.png","校園安全防護六步驟.png","校園安全防護守則.png"
 ],
 
 "🚫 毒品防制": [
-"拒絕毒品.png",
-"新興毒品偽裝.png",
-"查獲違禁品.png",
-"禁止攜帶違禁品-直式.png",
-"禁止攜帶違禁品-橫式.png",
-"酷瑪介紹新興毒品-直.png",
-"酷瑪介紹新興毒品-橫.png"
+"拒絕毒品.png","新興毒品偽裝.png","查獲違禁品.png",
+"禁止攜帶違禁品-直式.png","禁止攜帶違禁品-橫式.png",
+"酷瑪介紹新興毒品-直.png","酷瑪介紹新興毒品-橫.png"
 ]
 
 };
 
 const container = document.getElementById("content");
 
-let id = 0;
-
-// 🔄 每個分類建立一個輪播
+// 🔄 建立畫面
 for (let category in data) {
 
-  let currentIndex = 0;
   let images = data[category];
+  let currentIndex = 0;
 
-  let title = document.createElement("h2");
-  title.innerText = category;
+  let sectionTitle = document.createElement("div");
+  sectionTitle.className = "section-title";
+  sectionTitle.innerText = category;
+
+  let card = document.createElement("div");
+  card.className = "card";
 
   let carousel = document.createElement("div");
   carousel.className = "carousel";
 
   let img = document.createElement("img");
-  img.src = "./" + images[0];
+  img.src = encodeURI("./" + images[0]);
 
-  // 左右按鈕
+  let filename = document.createElement("div");
+  filename.className = "filename";
+  filename.innerText = images[0];
+
   let prev = document.createElement("button");
   prev.className = "prev";
   prev.innerText = "◀";
@@ -153,33 +173,30 @@ for (let category in data) {
   next.className = "next";
   next.innerText = "▶";
 
-  // 切換函式
-  function updateImage() {
-    img.src = "./" + images[currentIndex];
+  function update() {
+    img.src = encodeURI("./" + images[currentIndex]);
+    filename.innerText = images[currentIndex];
   }
 
   prev.onclick = () => {
     currentIndex = (currentIndex - 1 + images.length) % images.length;
-    updateImage();
+    update();
   };
 
   next.onclick = () => {
     currentIndex = (currentIndex + 1) % images.length;
-    updateImage();
+    update();
   };
-
-  // 自動輪播
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % images.length;
-    updateImage();
-  }, 3000);
 
   carousel.appendChild(prev);
   carousel.appendChild(img);
   carousel.appendChild(next);
 
-  container.appendChild(title);
-  container.appendChild(carousel);
+  card.appendChild(carousel);
+  card.appendChild(filename);
+
+  container.appendChild(sectionTitle);
+  container.appendChild(card);
 }
 
 </script>
