@@ -7,20 +7,41 @@
 
 <style>
 body {
-  font-family: Arial;
+  font-family: "微軟正黑體";
   text-align: center;
+  background: #f5f6fa;
+}
+
+h1 {
+  margin-top: 20px;
 }
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
   padding: 20px;
 }
 
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
 img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 8px;
+}
+
+p {
+  font-size: 14px;
 }
 </style>
 
@@ -32,8 +53,28 @@ img {
 
 <div class="gallery">
 
-<img src="images/你的圖片.png">
-<img src="images/你的圖片2.png">
+  <!-- 範例圖片（請照你的檔名修改） -->
+
+  <div class="card">
+    <a href="https://ilvsilc.github.io/my-photos/images/交通安全指引.png" target="_blank">
+      <img src="https://ilvsilc.github.io/my-photos/images/交通安全指引.png">
+    </a>
+    <p>交通安全指引</p>
+  </div>
+
+  <div class="card">
+    <a href="https://ilvsilc.github.io/my-photos/images/反詐騙.png" target="_blank">
+      <img src="https://ilvsilc.github.io/my-photos/images/反詐騙.png">
+    </a>
+    <p>反詐騙</p>
+  </div>
+
+  <div class="card">
+    <a href="https://ilvsilc.github.io/my-photos/images/兩性平等.png" target="_blank">
+      <img src="https://ilvsilc.github.io/my-photos/images/兩性平等.png">
+    </a>
+    <p>兩性平等</p>
+  </div>
 
 </div>
 
