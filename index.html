@@ -12,7 +12,6 @@ body {
   background: #f5f6fa;
 }
 
-/* 🔴 上方標題 */
 .header {
   background: #d83434;
   color: white;
@@ -21,14 +20,12 @@ body {
   font-weight: bold;
 }
 
-/* 容器 */
 .container {
   max-width: 1100px;
   margin: auto;
   padding: 20px;
 }
 
-/* 分類標題 */
 .section-title {
   font-size: 22px;
   margin: 40px 0 10px;
@@ -36,7 +33,6 @@ body {
   padding-left: 10px;
 }
 
-/* 卡片 */
 .card {
   background: white;
   border-radius: 12px;
@@ -45,7 +41,6 @@ body {
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-/* 圖片輪播 */
 .carousel {
   position: relative;
   max-width: 600px;
@@ -57,7 +52,6 @@ body {
   border-radius: 10px;
 }
 
-/* 左右按鈕 */
 .prev, .next {
   position: absolute;
   top: 50%;
@@ -73,22 +67,10 @@ body {
 .prev { left: 10px; }
 .next { right: 10px; }
 
-.prev:hover, .next:hover {
-  background: rgba(0,0,0,0.85);
-}
-
-/* 檔名 */
 .filename {
   margin-top: 10px;
   font-size: 14px;
   color: #555;
-}
-
-/* 📱 手機 */
-@media (max-width: 600px) {
-  .section-title {
-    font-size: 18px;
-  }
 }
 </style>
 
@@ -104,7 +86,6 @@ body {
 
 <script>
 
-// 📦 分類（已依你所有檔案整理）
 const data = {
 
 "🚸 交通與安全": [
@@ -114,17 +95,21 @@ const data = {
 
 "⚖️ 法治 / 反詐騙 / 霸凌": [
 "反詐騙.png","全民普發防詐.png","網路詐騙.png","網路霸凌.png","霸凌分界.jpg",
-"辨識預防詐騙電子郵件.png","打工小心反變詐騙-日.png","打工小心反變詐騙-中.png"
+"辨識預防詐騙電子郵件.png"
 ],
 
 "🧠 性平 / 人際": [
-"兩性平等.png","校園性騷擾定義.png","校園性騷擾關鍵要素與類型.png",
-"避免性騷擾他人之心法.png","讓言語充滿善意.png","讓言語充滿善意1.png",
-"讓言語充滿善意 (2).png","好好說話.png"
+"兩性平等.png",
+"校園性騷擾關鍵要素與類型.png",
+"避免性騷擾他人之心法.png",
+"讓言語充滿善意.png",
+"讓言語充滿善意1.png",
+"讓言語充滿善意 (2).png",
+"好好說話.png"
 ],
 
 "🩺 健康 / 生活": [
-"一氧化碳.jpg","環境維護.png","寒假愛校時間.jpg","尊重自主隱私.png","尊重隱私.png","彩虹茶.png"
+"一氧化碳.jpg","環境維護.png","寒假愛校時間.jpg","尊重自主隱私.png","尊重隱私.png"
 ],
 
 "🚨 防災 / 校園安全": [
@@ -142,15 +127,14 @@ const data = {
 
 const container = document.getElementById("content");
 
-// 🔄 建立畫面
 for (let category in data) {
 
   let images = data[category];
   let currentIndex = 0;
 
-  let sectionTitle = document.createElement("div");
-  sectionTitle.className = "section-title";
-  sectionTitle.innerText = category;
+  let title = document.createElement("div");
+  title.className = "section-title";
+  title.innerText = category;
 
   let card = document.createElement("div");
   card.className = "card";
@@ -195,7 +179,7 @@ for (let category in data) {
   card.appendChild(carousel);
   card.appendChild(filename);
 
-  container.appendChild(sectionTitle);
+  container.appendChild(title);
   container.appendChild(card);
 }
 
