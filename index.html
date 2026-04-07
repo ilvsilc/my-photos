@@ -17,25 +17,33 @@ h2 {
   padding-bottom: 5px;
 }
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  padding: 20px;
+/* 跑馬燈 */
+.carousel {
+  position: relative;
+  max-width: 500px;
+  margin: 20px auto;
 }
 
-.card {
-  background: #fff;
-  padding: 8px;
-}
-
-.card img {
+.carousel img {
   width: 100%;
+  border-radius: 10px;
 }
 
-.card p {
-  font-size: 14px;
+/* 左右按鈕 */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
 }
+
+.prev { left: 0; }
+.next { right: 0; }
+
 </style>
 
 </head>
@@ -48,7 +56,7 @@ h2 {
 
 <script>
 
-// 📦 分類（已幫你整理）
+// 📦 原本資料 그대로使用
 const data = {
 
 "🚸 交通與安全": [
@@ -117,34 +125,61 @@ const data = {
 
 };
 
-// 🔄 自動生成
 const container = document.getElementById("content");
 
+let id = 0;
+
+// 🔄 每個分類建立一個輪播
 for (let category in data) {
+
+  let currentIndex = 0;
+  let images = data[category];
 
   let title = document.createElement("h2");
   title.innerText = category;
 
-  let gallery = document.createElement("div");
-  gallery.className = "gallery";
+  let carousel = document.createElement("div");
+  carousel.className = "carousel";
 
-  data[category].forEach(file => {
+  let img = document.createElement("img");
+  img.src = "./" + images[0];
 
-    let card = document.createElement("div");
-    card.className = "card";
+  // 左右按鈕
+  let prev = document.createElement("button");
+  prev.className = "prev";
+  prev.innerText = "◀";
 
-    card.innerHTML = `
-      <a href="./${file}" target="_blank">
-        <img src="./${file}">
-      </a>
-      <p>${file}</p>
-    `;
+  let next = document.createElement("button");
+  next.className = "next";
+  next.innerText = "▶";
 
-    gallery.appendChild(card);
-  });
+  // 切換函式
+  function updateImage() {
+    img.src = "./" + images[currentIndex];
+  }
+
+  prev.onclick = () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+  };
+
+  next.onclick = () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  };
+
+  // 自動輪播
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  }, 3000);
+
+  carousel.appendChild(prev);
+  carousel.appendChild(img);
+  carousel.appendChild(next);
 
   container.appendChild(title);
-  container.appendChild(gallery);
+  container.appendChild(carousel);
 }
 
 </script>
