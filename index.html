@@ -12,10 +12,6 @@ body {
   background: #f5f6fa;
 }
 
-h1 {
-  margin-top: 20px;
-}
-
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -28,7 +24,6 @@ h1 {
   border-radius: 12px;
   padding: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: 0.3s;
 }
 
 .card:hover {
@@ -38,10 +33,6 @@ h1 {
 img {
   width: 100%;
   border-radius: 8px;
-}
-
-p {
-  font-size: 14px;
 }
 </style>
 
@@ -53,26 +44,20 @@ p {
 
 <div class="gallery">
 
-  <!-- 範例圖片（請照你的檔名修改） -->
+  <!-- 注意：這裡沒有 images/ -->
 
   <div class="card">
-    <a href="https://ilvsilc.github.io/my-photos/images/交通安全指引.png" target="_blank">
-      <img src="https://ilvsilc.github.io/my-photos/images/交通安全指引.png">
-    </a>
+    <img src="./交通安全指引.png">
     <p>交通安全指引</p>
   </div>
 
   <div class="card">
-    <a href="https://ilvsilc.github.io/my-photos/images/反詐騙.png" target="_blank">
-      <img src="https://ilvsilc.github.io/my-photos/images/反詐騙.png">
-    </a>
+    <img src="./反詐騙.png">
     <p>反詐騙</p>
   </div>
 
   <div class="card">
-    <a href="https://ilvsilc.github.io/my-photos/images/兩性平等.png" target="_blank">
-      <img src="https://ilvsilc.github.io/my-photos/images/兩性平等.png">
-    </a>
+    <img src="./兩性平等.png">
     <p>兩性平等</p>
   </div>
 
