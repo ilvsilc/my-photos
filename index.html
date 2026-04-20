@@ -74,13 +74,6 @@ body {
   color: #555;
   word-break: break-all;
 }
-
-.error-note {
-  color: #d83434;
-  font-size: 12px;
-  margin-top: 5px;
-  text-align: center;
-}
 </style>
 
 </head>
@@ -106,8 +99,8 @@ const data = {
 "⚖️ 法治 / 反詐騙 / 霸凌": [
 "反詐騙.png","全民普發防詐.png","網路詐騙.png","網路霸凌.png","霸凌分界.jpg",
 "辨識預防詐騙電子郵件.png",
-"網路聊天室避免淺漏個人資料.png",
-"取金融帐户（卡片）案例.png"
+"網路聊天室避免洩漏個人資料.png",
+"騙取金融帳戶(卡片)案例.png"
 ],
 
 "🧠 性平 / 人際": [
@@ -153,25 +146,13 @@ for (let category in data) {
   carousel.className = "carousel";
 
   let img = document.createElement("img");
-  // 使用 decodeURIComponent 確保中文檔名正確，但路徑仍為相對路徑
+  // 使用 encodeURI 處理中文與特殊字元
   img.src = encodeURI("./" + images[0]);
   img.alt = images[0];
 
   let filename = document.createElement("div");
   filename.className = "filename";
   filename.innerText = images[0];
-
-  // 加入錯誤提示（當圖片載入失敗時）
-  let errorMsg = document.createElement("div");
-  errorMsg.className = "error-note";
-  errorMsg.style.display = "none";
-  errorMsg.innerText = "⚠️ 圖片載入失敗，請確認檔名與路徑";
-
-  img.onerror = () => {
-    errorMsg.style.display = "block";
-    // 可選擇顯示預設佔位圖
-    img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='337' viewBox='0 0 600 337'%3E%3Crect width='100%25' height='100%25' fill='%23eeeeee'/%3E%3Ctext x='50%25' y='50%25' font-size='16' text-anchor='middle' dy='.3em' fill='%23999'%3E圖片無法載入%3C/text%3E%3C/svg%3E";
-  };
 
   let prev = document.createElement("button");
   prev.className = "prev";
@@ -184,12 +165,6 @@ for (let category in data) {
   function update() {
     img.src = encodeURI("./" + images[currentIndex]);
     filename.innerText = images[currentIndex];
-    errorMsg.style.display = "none";
-    // 重新綁定 onerror
-    img.onerror = () => {
-      errorMsg.style.display = "block";
-      img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='337' viewBox='0 0 600 337'%3E%3Crect width='100%25' height='100%25' fill='%23eeeeee'/%3E%3Ctext x='50%25' y='50%25' font-size='16' text-anchor='middle' dy='.3em' fill='%23999'%3E圖片無法載入%3C/text%3E%3C/svg%3E";
-    };
   }
 
   prev.onclick = () => {
@@ -205,7 +180,6 @@ for (let category in data) {
   carousel.appendChild(prev);
   carousel.appendChild(img);
   carousel.appendChild(next);
-  carousel.appendChild(errorMsg);
 
   card.appendChild(carousel);
   card.appendChild(filename);
