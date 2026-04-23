@@ -93,14 +93,18 @@ const data = {
 "🚸 交通與安全": [
 "交通安全指引.png","校內交通安全.png","校園交通安全.png","校園交通安全宣導.png",
 "校園車輛減速慢行.png","微型電動車指南.png","清明連假交通安全.png","機車四寶.png","高三機車新手上路.jpg",
-"1150414地下室停車場交通宣導.png"
+"1150414地下室停車場交通宣導.png",
+"防禦駕駛.png"
 ],
 
 "⚖️ 法治 / 反詐騙 / 霸凌": [
 "反詐騙.png","全民普發防詐.png","網路詐騙.png","網路霸凌.png","霸凌分界.jpg",
 "辨識預防詐騙電子郵件.png",
 "網路聊天室避免洩漏個人資料.png",
-"騙取金融帳戶(卡片)案例.png"
+"騙取金融帳戶(卡片)案例.png",
+"請假證明注意事項.png",
+"認識入侵電腦罪.png",
+"竊取遊戲寶物是犯罪.png"
 ],
 
 "🧠 性平 / 人際": [
@@ -112,7 +116,8 @@ const data = {
 ],
 
 "🩺 健康 / 生活": [
-"一氧化碳.jpg","環境維護.png","寒假愛校時間.jpg","尊重自主隱私.png","尊重隱私.png"
+"一氧化碳.jpg","環境維護.png","寒假愛校時間.jpg","尊重自主隱私.png","尊重隱私.png",
+"電梯友善搭乘.png"
 ],
 
 "🚨 防災 / 校園安全": [
@@ -146,7 +151,6 @@ for (let category in data) {
   carousel.className = "carousel";
 
   let img = document.createElement("img");
-  // 使用 encodeURI 處理中文與特殊字元
   img.src = encodeURI("./" + images[0]);
   img.alt = images[0];
 
